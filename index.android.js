@@ -19,9 +19,13 @@ export class CurrentCost extends React.Component {
     let n = (this.props.rate * (this.props.time / priceDivider / 3600)).toFixed(2);
 
     return (
-      <Text style={styles.header}>
-        {n} {currencyLabel}
-      </Text>
+      <TouchableNativeFeedback onPress={this.props.onClick}>
+        <View>
+          <Text style={styles.header}>
+            So far: {n} {currencyLabel}
+          </Text>
+        </View>
+      </TouchableNativeFeedback>
     );
   }
 };
@@ -127,7 +131,7 @@ export class MeetingCostMeter extends React.Component {
   }
 
   resetState() {
-    this.state = {time: 0, paused: true, rate: 20};
+    this.state = {time: 0, paused: true, started: false, rate: 20};
   }
 
   tick() {
@@ -141,7 +145,7 @@ export class MeetingCostMeter extends React.Component {
   }
 
   startPauseContinue() {
-    this.setState({paused: !this.state.paused});
+    this.setState({paused: !this.state.paused, started: true});
   }
 
   setRate(v) {
@@ -154,13 +158,14 @@ export class MeetingCostMeter extends React.Component {
     return (
       <View style={styles.container}>
         <CurrentCost
+          onClick={this.resetState.bind(this)}
           time={this.state.time}
           rate={this.state.rate}/>
         <HourlyRate
           rate={this.state.rate}
           onChange={this.setRate.bind(this)}/>
         <StartStopButton
-          inProgress={this.state.time > 0}
+          inProgress={this.state.started}
           isPaused={this.state.paused}
           onClick={this.startPauseContinue.bind(this)}/>
       </View>
@@ -176,7 +181,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   header: {
-    fontSize: 20,
+    fontSize: 25,
     textAlign: 'center',
   },
   information: {
