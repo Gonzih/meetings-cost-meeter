@@ -15,14 +15,16 @@ var priceDivider = 1000 / tickInterval;
 var currencyLabel = '€';
 
 export class CurrentCost extends React.Component {
-  render() {
-    let n = (this.props.rate * this.props.participants * (this.props.time / priceDivider / 3600)).toFixed(2);
+  totalPrice() {
+    return (this.props.rate * this.props.participants * (this.props.time / priceDivider / 3600)).toFixed(2);
+  }
 
+  render() {
     return (
       <TouchableNativeFeedback onPress={this.props.onClick}>
         <View>
           <Text style={styles.header}>
-            {n} {currencyLabel}
+            {this.totalPrice()} {currencyLabel}
           </Text>
         </View>
       </TouchableNativeFeedback>
