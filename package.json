@@ -9,6 +9,7 @@
     "react-native": "^0.13.2"
   },
   "devDependencies": {
-    "eslint-plugin-react": "^3.6.3"
+      "eslint-plugin-react": "^3.6.3",
+      "eslint-plugin-flowtype": "^1.0.0"
   }
 }
