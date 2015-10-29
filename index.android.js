@@ -16,7 +16,7 @@ var currencyLabel = '€';
 
 export class CurrentCost extends React.Component {
   render() {
-    let n = (this.props.rate * (this.props.time / priceDivider / 3600)).toFixed(2);
+    let n = (this.props.rate * this.props.people * (this.props.time / priceDivider / 3600)).toFixed(2);
 
     return (
       <TouchableNativeFeedback onPress={this.props.onClick}>
@@ -131,7 +131,7 @@ export class MeetingCostMeter extends React.Component {
   }
 
   initialState() {
-    return {time: 0, paused: true, started: false, rate: 20};
+    return {time: 0, paused: true, started: false, rate: 20, people: 1};
   }
 
   resetState() {
@@ -163,6 +163,7 @@ export class MeetingCostMeter extends React.Component {
       <View style={styles.container}>
         <CurrentCost
           onClick={this.resetState.bind(this)}
+          people={this.state.people}
           time={this.state.time}
           rate={this.state.rate}/>
         <HourlyRate
