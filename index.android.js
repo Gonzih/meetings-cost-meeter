@@ -12,7 +12,7 @@ var {
 
 var tickInterval = 100;
 var priceDivider = 1000 / tickInterval;
-var currencyLabel = '$';
+var currencyLabel = '€';
 
 export class CurrentCost extends React.Component {
   render() {
@@ -34,7 +34,7 @@ export class RateView extends React.Component {
   render() {
     return (
       <Text>
-        Avg hourly rate: {this.props.rate} {currencyLabel}
+        Avg. hourly rate: {this.props.rate} {currencyLabel}
       </Text>
     );
   }
@@ -126,12 +126,16 @@ export class StartStopButton extends React.Component {
 export class MeetingCostMeter extends React.Component {
   constructor(props) {
     super(props);
-    this.resetState();
+    this.state = this.initialState();
     this.startTimerLoop();
   }
 
+  initialState() {
+    return {time: 0, paused: true, started: false, rate: 20};
+  }
+
   resetState() {
-    this.state = {time: 0, paused: true, started: false, rate: 20};
+    this.setState(this.initialState());
   }
 
   tick() {
@@ -149,7 +153,7 @@ export class MeetingCostMeter extends React.Component {
   }
 
   setRate(v) {
-    let rate = v || 20;
+    let rate = v || this.state.rate;
 
     this.setState({rate: rate});
   }
@@ -191,12 +195,14 @@ var styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
+    width: 120,
     borderWidth: 1,
     borderColor: '#333333',
     borderRadius: 5,
     padding: 5,
   },
   buttonText: {
+    textAlign: 'center',
     fontSize: 20,
   },
 });
