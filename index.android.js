@@ -14,7 +14,7 @@ var tickInterval = 100;
 var priceDivider = 1000 / tickInterval;
 var currencyLabel = '€';
 
-export class CurrentCost extends React.Component {
+export default class CurrentCost extends React.Component {
   totalPrice() {
     return (this.props.rate * this.props.participants * (this.props.time / priceDivider / 3600)).toFixed(2);
   }
@@ -32,7 +32,7 @@ export class CurrentCost extends React.Component {
   }
 };
 
-export class RateView extends React.Component {
+export default class RateView extends React.Component {
   render() {
     return (
       <Text>
@@ -42,7 +42,7 @@ export class RateView extends React.Component {
   }
 };
 
-export class RateEdit extends React.Component {
+export default class RateEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {value: this.props.value};
@@ -59,7 +59,7 @@ export class RateEdit extends React.Component {
   }
 };
 
-export class HourlyRate extends React.Component {
+export default class HourlyRate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {edit: false};
@@ -93,7 +93,7 @@ export class HourlyRate extends React.Component {
   }
 };
 
-export class ParticipantsView extends React.Component {
+export default class ParticipantsView extends React.Component {
   render() {
     return (
       <TouchableNativeFeedback onPress={this.props.onClick}>
@@ -107,7 +107,7 @@ export class ParticipantsView extends React.Component {
   }
 };
 
-export class StartStopButton extends React.Component {
+export default class StartStopButton extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -139,7 +139,7 @@ export class StartStopButton extends React.Component {
   }
 };
 
-export class MeetingCostMeter extends React.Component {
+export default class MeetingCostMeter extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.initialState();
