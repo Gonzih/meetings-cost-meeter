@@ -91,6 +91,20 @@ export class HourlyRate extends React.Component {
   }
 };
 
+export class PeopleView extends React.Component {
+  render() {
+    return (
+      <TouchableNativeFeedback onPress={this.props.onClick}>
+        <View style={styles.peopleInformation}>
+          <Text>
+            x {this.props.people} participants
+          </Text>
+        </View>
+      </TouchableNativeFeedback>
+    );
+  }
+}
+
 export class StartStopButton extends React.Component {
   constructor(props) {
     super(props);
@@ -158,6 +172,10 @@ export class MeetingCostMeter extends React.Component {
     this.setState({rate: rate});
   }
 
+  incPeople() {
+    this.setState({people: this.state.people + 1});
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -169,6 +187,9 @@ export class MeetingCostMeter extends React.Component {
         <HourlyRate
           rate={this.state.rate}
           onChange={this.setRate.bind(this)}/>
+        <PeopleView
+          onClick={this.incPeople.bind(this)}
+          people={this.state.people}/>
         <StartStopButton
           inProgress={this.state.started}
           isPaused={this.state.paused}
@@ -191,6 +212,10 @@ var styles = StyleSheet.create({
   },
   information: {
     margin: 15,
+    textAlign: 'center',
+    color: '#333333',
+  },
+  peopleInformation: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 20,
