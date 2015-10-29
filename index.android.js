@@ -16,7 +16,7 @@ var currencyLabel = '€';
 
 export class CurrentCost extends React.Component {
   render() {
-    let n = (this.props.rate * this.props.people * (this.props.time / priceDivider / 3600)).toFixed(2);
+    let n = (this.props.rate * this.props.participants * (this.props.time / priceDivider / 3600)).toFixed(2);
 
     return (
       <TouchableNativeFeedback onPress={this.props.onClick}>
@@ -91,13 +91,13 @@ export class HourlyRate extends React.Component {
   }
 };
 
-export class PeopleView extends React.Component {
+export class ParticipantsView extends React.Component {
   render() {
     return (
       <TouchableNativeFeedback onPress={this.props.onClick}>
-        <View style={styles.peopleInformation}>
+        <View style={styles.participantsInformation}>
           <Text>
-            x {this.props.people} participants
+            x {this.props.participants} participants
           </Text>
         </View>
       </TouchableNativeFeedback>
@@ -145,7 +145,7 @@ export class MeetingCostMeter extends React.Component {
   }
 
   initialState() {
-    return {time: 0, paused: true, started: false, rate: 20, people: 1};
+    return {time: 0, paused: true, started: false, rate: 20, participants: 1};
   }
 
   resetState() {
@@ -172,8 +172,8 @@ export class MeetingCostMeter extends React.Component {
     this.setState({rate: rate});
   }
 
-  incPeople() {
-    this.setState({people: this.state.people + 1});
+  incParticipants() {
+    this.setState({participants: this.state.participants + 1});
   }
 
   render() {
@@ -181,15 +181,15 @@ export class MeetingCostMeter extends React.Component {
       <View style={styles.container}>
         <CurrentCost
           onClick={this.resetState.bind(this)}
-          people={this.state.people}
+          participants={this.state.participants}
           time={this.state.time}
           rate={this.state.rate}/>
         <HourlyRate
           rate={this.state.rate}
           onChange={this.setRate.bind(this)}/>
-        <PeopleView
-          onClick={this.incPeople.bind(this)}
-          people={this.state.people}/>
+        <ParticipantsView
+          onClick={this.incParticipants.bind(this)}
+          participants={this.state.participants}/>
         <StartStopButton
           inProgress={this.state.started}
           isPaused={this.state.paused}
@@ -215,7 +215,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
   },
-  peopleInformation: {
+  participantsInformation: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 20,
