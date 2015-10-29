@@ -22,7 +22,7 @@ export class CurrentCost extends React.Component {
       <TouchableNativeFeedback onPress={this.props.onClick}>
         <View>
           <Text style={styles.header}>
-            So far: {n} {currencyLabel}
+            {n} {currencyLabel}
           </Text>
         </View>
       </TouchableNativeFeedback>
@@ -207,7 +207,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   header: {
-    fontSize: 25,
+    fontSize: 35,
     textAlign: 'center',
   },
   information: {
