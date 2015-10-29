@@ -103,7 +103,7 @@ export class ParticipantsView extends React.Component {
       </TouchableNativeFeedback>
     );
   }
-}
+};
 
 export class StartStopButton extends React.Component {
   constructor(props) {
