@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-var React = require('react-native');
+var React = require("react-native");
 var {
   AppRegistry,
   StyleSheet,
@@ -12,7 +12,7 @@ var {
 
 var tickInterval = 1000;
 var priceDivider = 1000 / tickInterval;
-var currencyLabel = '€';
+var currencyLabel = "€";
 
 export default class TotalTime extends React.Component {
   formattedTime() {
@@ -31,7 +31,7 @@ export default class TotalTime extends React.Component {
       </View>
     );
   }
-};
+}
 
 export default class CurrentCost extends React.Component {
   totalPrice() {
@@ -49,7 +49,7 @@ export default class CurrentCost extends React.Component {
       </TouchableNativeFeedback>
     );
   }
-};
+}
 
 export default class RateView extends React.Component {
   render() {
@@ -59,7 +59,7 @@ export default class RateView extends React.Component {
       </Text>
     );
   }
-};
+}
 
 export default class RateEdit extends React.Component {
   constructor(props) {
@@ -77,7 +77,7 @@ export default class RateEdit extends React.Component {
         onSubmitEditing={() => this.props.onChange(parseInt(this.state.value))} />
     );
   }
-};
+}
 
 export default class HourlyRate extends React.Component {
   constructor(props) {
@@ -111,7 +111,7 @@ export default class HourlyRate extends React.Component {
       </TouchableNativeFeedback>
     );
   }
-};
+}
 
 export default class ParticipantsView extends React.Component {
   render() {
@@ -125,7 +125,7 @@ export default class ParticipantsView extends React.Component {
       </TouchableNativeFeedback>
     );
   }
-};
+}
 
 export default class StartStopButton extends React.Component {
   constructor(props) {
@@ -141,7 +141,7 @@ export default class StartStopButton extends React.Component {
       } else {
         label = "Pause";
       }
-    };
+    }
 
     return label;
   }
@@ -157,7 +157,7 @@ export default class StartStopButton extends React.Component {
       </TouchableNativeFeedback>
     );
   }
-};
+}
 
 export default class MeetingCostMeter extends React.Component {
   constructor(props) {
@@ -221,40 +221,40 @@ export default class MeetingCostMeter extends React.Component {
       </View>
     );
   }
-};
+}
 
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF",
   },
   header: {
     fontSize: 38,
-    textAlign: 'center',
+    textAlign: "center",
   },
   information: {
     margin: 15,
-    textAlign: 'center',
-    color: '#333333',
+    textAlign: "center",
+    color: "#333333",
   },
   participantsInformation: {
-    textAlign: 'center',
-    color: '#333333',
+    textAlign: "center",
+    color: "#333333",
     marginBottom: 20,
   },
   button: {
     width: 120,
     borderWidth: 1,
-    borderColor: '#333333',
+    borderColor: "#333333",
     borderRadius: 5,
     padding: 5,
   },
   buttonText: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 20,
   },
 });
 
-AppRegistry.registerComponent('MeetingCostMeter', () => MeetingCostMeter);
+AppRegistry.registerComponent("MeetingCostMeter", () => MeetingCostMeter);
