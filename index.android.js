@@ -14,11 +14,7 @@ var tickInterval = 1000;
 var priceDivider = 1000 / tickInterval;
 var currencyLabel = '€';
 
-export default class CurrentCost extends React.Component {
-  totalPrice() {
-    return (this.props.rate * this.props.participants * (this.props.time / priceDivider / 3600)).toFixed(2);
-  }
-
+export default class TotalTime extends React.Component {
   formattedTime() {
     let sec_num = this.props.time / priceDivider;
     let date = new Date(sec_num * 1000);
@@ -28,18 +24,27 @@ export default class CurrentCost extends React.Component {
 
   render() {
     return (
+      <View style={styles.information}>
+        <Text>
+          {this.formattedTime()}
+        </Text>
+      </View>
+    );
+  }
+};
+
+export default class CurrentCost extends React.Component {
+  totalPrice() {
+    return (this.props.rate * this.props.participants * (this.props.time / priceDivider / 3600)).toFixed(2);
+  }
+
+  render() {
+    return (
       <TouchableNativeFeedback onPress={this.props.onClick}>
         <View>
-          <View>
-            <Text style={styles.header}>
-              {this.totalPrice()} {currencyLabel}
-            </Text>
-          </View>
-          <View style={styles.information}>
-            <Text>
-              {this.formattedTime()}
-            </Text>
-          </View>
+          <Text style={styles.header}>
+            {this.totalPrice()} {currencyLabel}
+          </Text>
         </View>
       </TouchableNativeFeedback>
     );
@@ -196,6 +201,8 @@ export default class MeetingCostMeter extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <TotalTime
+          time={this.state.time}/>
         <CurrentCost
           onClick={this.resetState.bind(this)}
           participants={this.state.participants}
@@ -224,7 +231,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   header: {
-    fontSize: 35,
+    fontSize: 38,
     textAlign: 'center',
   },
   information: {
