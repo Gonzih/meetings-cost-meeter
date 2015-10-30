@@ -65,8 +65,9 @@ export default class RateEdit extends React.Component {
   render() {
     return (
       <TextInput
-        keyboardType='numeric'
+        keyboardType="numeric"
         value={this.props.rate}
+        autoFocus="true"
         onChangeText={(v) => this.setState({value: v})}
         onSubmitEditing={() => this.props.onChange(parseInt(this.state.value))} />
     );
