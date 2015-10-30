@@ -10,7 +10,7 @@ var {
   TouchableNativeFeedback,
 } = React;
 
-var tickInterval = 100;
+var tickInterval = 1000;
 var priceDivider = 1000 / tickInterval;
 var currencyLabel = '€';
 
@@ -19,13 +19,27 @@ export default class CurrentCost extends React.Component {
     return (this.props.rate * this.props.participants * (this.props.time / priceDivider / 3600)).toFixed(2);
   }
 
+  formattedTime() {
+    let sec_num = this.props.time / priceDivider;
+    let date = new Date(sec_num * 1000);
+
+    return date.toISOString().slice(11, 19);
+  }
+
   render() {
     return (
       <TouchableNativeFeedback onPress={this.props.onClick}>
         <View>
-          <Text style={styles.header}>
-            {this.totalPrice()} {currencyLabel}
-          </Text>
+          <View>
+            <Text style={styles.header}>
+              {this.totalPrice()} {currencyLabel}
+            </Text>
+          </View>
+          <View style={styles.information}>
+            <Text>
+              {this.formattedTime()}
+            </Text>
+          </View>
         </View>
       </TouchableNativeFeedback>
     );
